@@ -1,0 +1,49 @@
+### Test Customer Support Agent API
+
+### Test simple greeting
+POST http://localhost:8080/api/support/chat
+Content-Type: text/plain
+
+Hello, I need help with my order
+
+### Test order lookup - Ask about order 123
+POST http://localhost:8080/api/support/chat
+Content-Type: text/plain
+
+Can you look up my order 123?
+
+### Test order lookup - Ask about order 456
+POST http://localhost:8080/api/support/chat
+Content-Type: text/plain
+
+What is the status of order 456?
+
+### Test refund request for delivered order
+POST http://localhost:8080/api/support/chat
+Content-Type: text/plain
+
+I would like to request a refund for order 456
+
+### Test refund request for non-delivered order (should fail)
+POST http://localhost:8080/api/support/chat
+Content-Type: text/plain
+
+Can I get a refund for order 123?
+
+### Test refund for already refunded order
+POST http://localhost:8080/api/support/chat
+Content-Type: text/plain
+
+I need a refund for order 456
+
+### Test non-existent order
+POST http://localhost:8080/api/support/chat
+Content-Type: text/plain
+
+Check order 999 for me
+
+### Test complex conversation
+POST http://localhost:8080/api/support/chat
+Content-Type: text/plain
+
+Hi, my name is John and I have a question about my recent purchase

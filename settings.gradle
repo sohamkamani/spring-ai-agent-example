@@ -1,1 +1,17 @@
+pluginManagement {
+	repositories {
+		maven { url 'https://repo.spring.io/milestone' }
+		gradlePluginPortal()
+		mavenCentral()
+	}
+}
+
+dependencyResolutionManagement {
+	repositoriesMode = RepositoriesMode.PREFER_SETTINGS
+	repositories {
+		maven { url 'https://repo.spring.io/milestone' }
+		mavenCentral()
+	}
+}
+
 rootProject.name = 'spring-ai-customer-support-agent'

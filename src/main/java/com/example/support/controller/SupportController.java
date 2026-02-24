@@ -1,6 +1,9 @@
 package com.example.support.controller;
 
-import com.example.support.service.CustomerSupportAgent;
+import java.util.List;
+
+import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.model.Generation;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,14 +13,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/support")
 public class SupportController {
 
-    private final CustomerSupportAgent customerSupportAgent;
+  private final ChatClient chatClient;
 
-    public SupportController(CustomerSupportAgent customerSupportAgent) {
-        this.customerSupportAgent = customerSupportAgent;
-    }
+  public SupportController(ChatClient chatClient) {
+    this.chatClient = chatClient;
+  }
 
-    @PostMapping("/chat")
-    public String chat(@RequestBody String message) {
-        return customerSupportAgent.chat(message);
-    }
+  @PostMapping("/chat")
+  public List<Generation> chat(@RequestBody String message) {
+    return chatClient.prompt()
+        .user(message)
+        .call().chatResponse().getResults();
+  }
 }
